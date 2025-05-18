@@ -1,0 +1,27 @@
+server:
+  port: 9090
+  servlet:
+    context-path: /wunderlist-api
+
+spring:
+  application:
+    name: wunderlist-api
+  data:
+    couchbase:
+      connection-string: couchbase://couchbase
+      username: admin
+      password: password
+      bucket-name: your-bucket-name
+      scope-name: your-scope-name
+
+    redis:
+      cluster:
+        nodes: redis:6379
+      connect-timeout: 1500
+      timeout: 3000
+
+
+jwt:
+  secret: fasdgafdagvvfdagdfahgsdjvajgdfadghfasdhafdafdahfdahsgdfsahdfahdajfdadfsahdfadhafahvdafd
+  accessTokenExpiration: 1800000
+  refreshTokenExpiration: 3600000
