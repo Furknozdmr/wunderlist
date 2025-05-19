@@ -8,6 +8,8 @@ import com.furkanozdemir.todolist.port.TaskPort;
 import com.furkanozdemir.todolist.usecase.model.CreateSubTaskUseCase;
 import lombok.RequiredArgsConstructor;
 
+import java.util.UUID;
+
 @DomainComponent
 @RequiredArgsConstructor
 public class CreateSubTaskHandler implements VoidUseCaseHandler<CreateSubTaskUseCase> {
@@ -16,8 +18,8 @@ public class CreateSubTaskHandler implements VoidUseCaseHandler<CreateSubTaskUse
 
     @Override
     public void handle(CreateSubTaskUseCase useCase) {
-        taskPort.findTaskById(useCase.taskId());
-        taskPort.createSubTask(new SubTaskDto(useCase.taskId(), useCase.title(), useCase.description(), TaskStatus.PENDING, useCase.deadline(),
-                                              useCase.reminderDate()));
+        taskPort.createSubTask(
+                new SubTaskDto(UUID.randomUUID().toString(), useCase.title(), useCase.description(), TaskStatus.PENDING, useCase.deadline(),
+                               useCase.reminderDate()), useCase.taskId());
     }
 }

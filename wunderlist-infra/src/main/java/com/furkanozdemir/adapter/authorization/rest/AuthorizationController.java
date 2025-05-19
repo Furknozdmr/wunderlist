@@ -32,7 +32,8 @@ public class AuthorizationController {
 
     @PostMapping(path = "/sign-up")
     public ResponseEntity<Void> signUp(@RequestBody NewUserRequest newUserRequest) {
-        newUserUseCaseVoidUseCaseHandler.handle(new NewUserUseCase(newUserRequest.getName(), newUserRequest.getSurname(), newUserRequest.getEmail(), newUserRequest.getPassword()));
+        newUserUseCaseVoidUseCaseHandler.handle(
+                new NewUserUseCase(newUserRequest.getName(), newUserRequest.getSurname(), newUserRequest.getEmail(), newUserRequest.getPassword()));
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
@@ -43,7 +44,8 @@ public class AuthorizationController {
     }
 
     @PostMapping(path = "/sign-out")
-    public ResponseEntity<Void> logout(@RequestHeader(value = "Authorization") String token, @RequestHeader(value = "Refresh-Token") String refreshToken) {
+    public ResponseEntity<Void> logout(@RequestHeader(value = "Authorization") String token,
+                                       @RequestHeader(value = "Refresh-Token") String refreshToken) {
         logoutUseCaseHandler.handle(new LogoutUseCase(token, refreshToken));
         return ResponseEntity.ok().build();
     }

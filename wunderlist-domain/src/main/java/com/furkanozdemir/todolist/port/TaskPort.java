@@ -3,6 +3,7 @@ package com.furkanozdemir.todolist.port;
 import java.util.List;
 
 public interface TaskPort {
+
     TaskDto findTaskById(String id);
 
     List<TaskDto> getAllTasksByUserId(String userId);
@@ -11,9 +12,9 @@ public interface TaskPort {
 
     void deleteTaskById(String id);
 
-    void deleteSubTaskById(String id); //TODO Subtask id yollanmalı mı
+    void deleteSubTaskById(String subTaskId, String taskId);
 
     void createTask(TaskDto taskDto);
 
-    void createSubTask(SubTaskDto subTaskDto);
+    void createSubTask(SubTaskDto subTaskDto, String taskId);
 }

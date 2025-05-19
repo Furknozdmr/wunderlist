@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 @DomainComponent
 @RequiredArgsConstructor
 public class LogoutUserHandler implements VoidUseCaseHandler<LogoutUseCase> {
+
     @Override
     public void handle(LogoutUseCase useCase) {
 

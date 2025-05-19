@@ -6,9 +6,9 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.beans.factory.annotation.Value;
 
 import javax.crypto.SecretKey;
 import java.nio.charset.StandardCharsets;
@@ -52,7 +52,7 @@ public class JwtAdapter implements JwtPort {
     @Override
     public String extractUserMailByToken(String token) {
         Map<String, ?> tokenBody = getTokenBody(token);
-        return (String)tokenBody.get("sub");
+        return (String) tokenBody.get("sub");
     }
 
     private String token(String email) {
@@ -63,13 +63,7 @@ public class JwtAdapter implements JwtPort {
         headerClaims.put("alg", "HS512");
 
         SecretKey secretKey = Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8));
-        return Jwts.builder()
-                .subject(email)
-                .issuedAt(now)
-                .claims(headerClaims)
-                .expiration(expirationDate)
-                .signWith(secretKey)
-                .compact();
+        return Jwts.builder().subject(email).issuedAt(now).claims(headerClaims).expiration(expirationDate).signWith(secretKey).compact();
     }
 
     private String refreshToken(String email) {
@@ -80,13 +74,7 @@ public class JwtAdapter implements JwtPort {
         headerClaims.put("alg", "HS512");
 
         SecretKey secretKey = Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8));
-        return Jwts.builder()
-                .subject(email)
-                .issuedAt(now)
-                .claims(headerClaims)
-                .expiration(expirationDate)
-                .signWith(secretKey)
-                .compact();
+        return Jwts.builder().subject(email).issuedAt(now).claims(headerClaims).expiration(expirationDate).signWith(secretKey).compact();
     }
 
     private Map<String, ?> getTokenBody(String token) {
