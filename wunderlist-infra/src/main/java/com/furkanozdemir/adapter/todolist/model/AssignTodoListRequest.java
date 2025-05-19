@@ -11,8 +11,8 @@ import lombok.Setter;
 @NoArgsConstructor
 public class AssignTodoListRequest {
 
-    private Long userId;
+    private String userId;
 
-    private Long todoListId;
+    private String todoListId;
 
 }

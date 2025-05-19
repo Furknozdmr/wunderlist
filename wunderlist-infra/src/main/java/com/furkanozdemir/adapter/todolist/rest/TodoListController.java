@@ -35,7 +35,7 @@ public class TodoListController {
     }
 
     @PostMapping(path = "/delete-todo-list/{id}")
-    public ResponseEntity<Void> deleteTodoList(@PathVariable("id") Long id) {
+    public ResponseEntity<Void> deleteTodoList(@PathVariable("id") String id) {
         deleteTodoListUseCaseHandler.handle(new DeleteTodoListUseCase(id));
         return ResponseEntity.ok().build();
     }
@@ -47,7 +47,7 @@ public class TodoListController {
     }
 
     @GetMapping(path = "/{userId}/get-todo-lists")
-    public ResponseEntity<UserTodoListResponse> getUserTodoLists(@PathVariable("userId") Long userId) {
+    public ResponseEntity<UserTodoListResponse> getUserTodoLists(@PathVariable("userId") String userId) {
         UserTodoListResponse response = todoListUseCaseHandler.handle(new TodoListUseCase(userId));
         return ResponseEntity.ok(response);
     }

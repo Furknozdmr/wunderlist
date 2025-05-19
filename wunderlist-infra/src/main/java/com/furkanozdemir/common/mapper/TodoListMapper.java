@@ -1,5 +1,6 @@
 package com.furkanozdemir.common.mapper;
 
+import com.furkanozdemir.adapter.todolist.entity.AssignUser;
 import com.furkanozdemir.adapter.todolist.entity.TodoList;
 import com.furkanozdemir.todolist.port.TodoListDto;
 import com.furkanozdemir.user.model.AssignUserDto;
@@ -17,9 +18,9 @@ public interface TodoListMapper {
 
     TodoList toEntity(TodoListDto dto);
 
-    AssignUserDto toDto(TodoList.AssignUser user);
+    AssignUserDto toDto(AssignUser user);
 
-    TodoList.AssignUser toEntity(AssignUserDto dto);
+    AssignUser toEntity(AssignUserDto dto);
 
     List<TodoListDto> toDtoList(List<TodoList> todoLists);
 

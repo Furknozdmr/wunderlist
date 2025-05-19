@@ -21,13 +21,13 @@ public class TodoListDataAdapter implements TodoListPort {
     private final TodoListMapper todoListMapper;
 
     @Override
-    public List<TodoListDto> getAllTodoListsByUserId(Long userId) {
-        List<TodoList> todoListsByAssignUserIdsIn = todoListRepository.findTodoListsByAssignUserIdsIn(List.of(userId));
+    public List<TodoListDto> getAllTodoListsByUserId(String userId) {
+        List<TodoList> todoListsByAssignUserIdsIn = todoListRepository.findTodoListsByAssignUserUserId(userId);
         return todoListMapper.toDtoList(todoListsByAssignUserIdsIn);
     }
 
     @Override
-    public void deleteTodoListById(Long todoListId) {
+    public void deleteTodoListById(String todoListId) {
         todoListRepository.deleteById(todoListId);
     }
 

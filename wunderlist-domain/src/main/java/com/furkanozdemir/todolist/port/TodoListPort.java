@@ -3,9 +3,9 @@ package com.furkanozdemir.todolist.port;
 import java.util.List;
 
 public interface TodoListPort {
-    List<TodoListDto> getAllTodoListsByUserId(Long userId);
+    List<TodoListDto> getAllTodoListsByUserId(String userId);
 
-    void deleteTodoListById(Long todoListId);
+    void deleteTodoListById(String todoListId);
 
     void createTodoList(TodoListDto todoListDto);
 }

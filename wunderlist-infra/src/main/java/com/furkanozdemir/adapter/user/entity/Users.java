@@ -16,7 +16,7 @@ import java.util.List;
 public class Users {
 
     @Id
-    private Long userId;
+    private String userId;
 
     private String email;
 

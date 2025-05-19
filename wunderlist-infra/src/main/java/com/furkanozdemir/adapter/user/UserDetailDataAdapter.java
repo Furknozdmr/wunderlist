@@ -2,6 +2,8 @@ package com.furkanozdemir.adapter.user;
 
 import com.furkanozdemir.adapter.user.entity.Users;
 import com.furkanozdemir.adapter.user.repository.UserRepository;
+import com.furkanozdemir.common.exception.UserNotFoundException;
+import com.furkanozdemir.user.model.AssignUserDto;
 import com.furkanozdemir.user.model.UserDto;
 import com.furkanozdemir.user.port.UserDetailPort;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +23,7 @@ public class UserDetailDataAdapter implements UserDetailPort {
     private final PasswordEncoder passwordEncoder;
 
     @Override
-    public Optional<UserDto> getUserDtoById(Long userId) {
+    public Optional<UserDto> getUserDtoById(String userId) {
         Optional<Users> optionalUser = userRepository.findById(userId);
         if (optionalUser.isPresent()) {
             Users user = optionalUser.get();
@@ -48,5 +50,10 @@ public class UserDetailDataAdapter implements UserDetailPort {
         userRepository.save(user);
     }
 
+    @Override
+    public AssignUserDto getAssignUserDtoById(String userId) {
+        Users users = userRepository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
+        return new AssignUserDto(users.getUserId(), users.getFirstName(), users.getLastName());
+    }
 
 }

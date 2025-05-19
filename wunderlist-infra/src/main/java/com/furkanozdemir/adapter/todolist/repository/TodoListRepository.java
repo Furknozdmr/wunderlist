@@ -8,7 +8,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
-public interface TodoListRepository extends CrudRepository<TodoList, Long> {
+public interface TodoListRepository extends CrudRepository<TodoList, String> {
 
-    List<TodoList> findTodoListsByAssignUserIdsIn(List<Long> assignUserIds);
+    List<TodoList> findTodoListsByAssignUserUserId(String assignUserUserId);
 }

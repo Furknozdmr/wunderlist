@@ -23,7 +23,7 @@ public class UserAuthenticationToken extends AbstractAuthenticationToken impleme
     private Object credentials;
 
     @Getter
-    private final Long userId;
+    private final String userId;
 
     @Getter
     private final String firstName;
