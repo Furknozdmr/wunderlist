@@ -1,6 +1,5 @@
 package com.furkanozdemir.adapter.authorization.model;
 
-
 import com.furkanozdemir.user.model.UserDto;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;

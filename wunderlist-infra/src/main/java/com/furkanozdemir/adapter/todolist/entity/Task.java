@@ -1,6 +1,5 @@
 package com.furkanozdemir.adapter.todolist.entity;
 
-import com.furkanozdemir.adapter.todolist.model.CreateTaskRequest;
 import com.furkanozdemir.common.enums.TaskStatus;
 import lombok.*;
 import org.springframework.data.annotation.Id;

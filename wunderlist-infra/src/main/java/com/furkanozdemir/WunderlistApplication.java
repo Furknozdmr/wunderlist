@@ -1,6 +1,5 @@
 package com.furkanozdemir;
 
-
 import com.furkanozdemir.common.DomainComponent;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

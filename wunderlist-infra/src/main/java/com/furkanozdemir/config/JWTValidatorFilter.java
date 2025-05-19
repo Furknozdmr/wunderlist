@@ -1,6 +1,5 @@
 package com.furkanozdemir.config;
 
-
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
@@ -24,7 +23,6 @@ import static java.util.Objects.nonNull;
 @RequiredArgsConstructor
 public class JWTValidatorFilter extends OncePerRequestFilter {
 
-
     public static final String JWT_KEY = "jxgEQeXHuPq8VdbyYFNkANdudQ53YUn4";
 
     public static final String AUTHORIZATION_HEADER = "Authorization";
@@ -42,9 +40,7 @@ public class JWTValidatorFilter extends OncePerRequestFilter {
 
                 String username = String.valueOf(payload.get("username"));
 
-                Authentication auth = new UsernamePasswordAuthenticationToken(username,
-                        null,
-                        null);
+                Authentication auth = new UsernamePasswordAuthenticationToken(username, null, null);
                 SecurityContextHolder.getContext().setAuthentication(auth);
 
             } catch (Exception e) {

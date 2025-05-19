@@ -14,7 +14,7 @@ public class DeleteSubTaskHandler implements VoidUseCaseHandler<DeleteSubTaskUse
 
     @Override
     public void handle(DeleteSubTaskUseCase useCase) {
-        taskPort.deleteSubTaskById(useCase.id());
+        taskPort.deleteSubTaskById(useCase.id(), useCase.taskId());
 
     }
 }

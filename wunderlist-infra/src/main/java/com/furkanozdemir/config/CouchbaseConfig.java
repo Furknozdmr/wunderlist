@@ -5,6 +5,7 @@ import org.springframework.data.couchbase.config.AbstractCouchbaseConfiguration;
 
 @Configuration
 public class CouchbaseConfig extends AbstractCouchbaseConfiguration {
+
     @Override
     public String getConnectionString() {
         return "couchbase://couchbase";

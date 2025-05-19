@@ -1,14 +1,11 @@
 package com.furkanozdemir.adapter.todolist.rest;
 
-import com.furkanozdemir.adapter.todolist.model.AssignTodoListRequest;
 import com.furkanozdemir.adapter.todolist.model.CreateSubTaskRequest;
 import com.furkanozdemir.adapter.todolist.model.CreateTaskRequest;
-import com.furkanozdemir.adapter.todolist.model.CreateTodoListRequest;
 import com.furkanozdemir.common.usecase.UseCaseHandler;
 import com.furkanozdemir.common.usecase.VoidUseCaseHandler;
 import com.furkanozdemir.todolist.usecase.model.*;
 import com.furkanozdemir.todolist.usecase.model.response.TasksResponse;
-import com.furkanozdemir.todolist.usecase.model.response.UserTodoListResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,16 +30,20 @@ public class TaskController {
 
     //private final VoidUseCaseHandler<AssignTaskUseCase> assignTaskUseCaseHandler;
 
-
     @PostMapping(path = "/create-task")
     public ResponseEntity<Void> createTask(@RequestBody CreateTaskRequest createTaskRequest) {
-        createTaskUseCaseHandler.handle(new CreateTaskUseCase(createTaskRequest.getListId(),createTaskRequest.getUserId(),createTaskRequest.getTitle(),createTaskRequest.getDescription(),createTaskRequest.getDeadline(),createTaskRequest.getReminderDate()));
+        createTaskUseCaseHandler.handle(
+                new CreateTaskUseCase(createTaskRequest.getListId(), createTaskRequest.getUserId(), createTaskRequest.getTitle(),
+                                      createTaskRequest.getDescription(), createTaskRequest.getDeadline(), createTaskRequest.getReminderDate()));
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @PostMapping(path = "/create-sub-task")
     public ResponseEntity<Void> createSubTask(@RequestBody CreateSubTaskRequest createSubTaskRequest) {
-        createSubTaskUseCaseHandler.handle(new CreateSubTaskUseCase(createSubTaskRequest.getTaskId(),createSubTaskRequest.getUserId(),createSubTaskRequest.getTitle(),createSubTaskRequest.getDescription(),createSubTaskRequest.getDeadline(),createSubTaskRequest.getReminderDate()));
+        createSubTaskUseCaseHandler.handle(
+                new CreateSubTaskUseCase(createSubTaskRequest.getTaskId(), createSubTaskRequest.getUserId(), createSubTaskRequest.getTitle(),
+                                         createSubTaskRequest.getDescription(), createSubTaskRequest.getDeadline(),
+                                         createSubTaskRequest.getReminderDate()));
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
@@ -52,17 +53,17 @@ public class TaskController {
         return ResponseEntity.ok().build();
     }
 
-    @PostMapping(path = "/delete-sub-task/{id}")
-    public ResponseEntity<Void> deleteSubTask(@PathVariable("id") String id) {
-        deleteSubTaskUseCaseHandler.handle(new DeleteSubTaskUseCase(id));
+    @PostMapping(path = "/task/{taskId}/delete-sub-task/{id}")
+    public ResponseEntity<Void> deleteSubTask(@PathVariable("id") String id, @PathVariable("taskId") String taskId) {
+        deleteSubTaskUseCaseHandler.handle(new DeleteSubTaskUseCase(id, taskId));
         return ResponseEntity.ok().build();
     }
 
-//    @PostMapping(path = "/assign-task")
-//    public ResponseEntity<Void> assignTask(@RequestBody AssignTodoListRequest assignTodoListRequest) {
-//        assignTodoListUseCaseHandler.handle(new AssignTodoListUseCase(assignTodoListRequest.getUserId(),assignTodoListRequest.getTodoListId()));
-//        return ResponseEntity.ok().build();
-//    } //TODO Yetişirse bak
+    //    @PostMapping(path = "/assign-task")
+    //    public ResponseEntity<Void> assignTask(@RequestBody AssignTodoListRequest assignTodoListRequest) {
+    //        assignTodoListUseCaseHandler.handle(new AssignTodoListUseCase(assignTodoListRequest.getUserId(),assignTodoListRequest.getTodoListId()));
+    //        return ResponseEntity.ok().build();
+    //    } //TODO Yetişirse bak
 
     @GetMapping(path = "/{userId}/get-user-tasks")
     public ResponseEntity<TasksResponse> getUserTasks(@PathVariable("userId") String userId) {

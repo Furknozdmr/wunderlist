@@ -6,6 +6,7 @@ import com.furkanozdemir.user.model.UserDto;
 import java.util.Optional;
 
 public interface UserDetailPort {
+
     Optional<UserDto> getUserDtoById(String userId);
 
     Optional<UserDto> getUserDtoByEmail(String email);

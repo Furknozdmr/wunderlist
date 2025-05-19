@@ -16,7 +16,7 @@ public class CreateUserHandler implements VoidUseCaseHandler<NewUserUseCase> {
     @Override
     public void handle(NewUserUseCase useCase) {
         userDetailPort.getUserDtoByEmail(useCase.email()).orElseThrow(() -> new UserAlreadyExistException(useCase.email()));
-        userDetailPort.createUser(useCase.email(),useCase.name(),useCase.surname(),useCase.password());
+        userDetailPort.createUser(useCase.email(), useCase.name(), useCase.surname(), useCase.password());
     }
 
 }

@@ -3,7 +3,6 @@ package com.furkanozdemir.todolist.usecase;
 import com.furkanozdemir.common.DomainComponent;
 import com.furkanozdemir.common.usecase.VoidUseCaseHandler;
 import com.furkanozdemir.todolist.port.TaskPort;
-import com.furkanozdemir.todolist.usecase.model.DeleteSubTaskUseCase;
 import com.furkanozdemir.todolist.usecase.model.DeleteTaskUseCase;
 import lombok.RequiredArgsConstructor;
 

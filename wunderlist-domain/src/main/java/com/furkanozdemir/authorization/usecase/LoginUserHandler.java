@@ -24,7 +24,7 @@ public class LoginUserHandler implements UseCaseHandler<UserInfoResponse, LoginU
         if (jwtPort.isMatchPasswords(useCase.password(), user.password())) {
             String token = jwtPort.generateToken(user.email());
             String refreshToken = jwtPort.generateRefreshToken(user.email());
-            return new UserInfoResponse(token, refreshToken,user.userId());
+            return new UserInfoResponse(token, refreshToken, user.userId());
         } else {
             throw new UserInvalidLoginException();
         }

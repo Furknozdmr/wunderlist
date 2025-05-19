@@ -1,6 +1,5 @@
 package com.furkanozdemir.common.mapper;
 
-
 import com.furkanozdemir.adapter.todolist.entity.AssignUser;
 import com.furkanozdemir.adapter.todolist.entity.SubTask;
 import com.furkanozdemir.adapter.todolist.entity.Task;

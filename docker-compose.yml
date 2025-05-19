@@ -16,7 +16,7 @@ services:
       - CB_PASSWORD=password
       - CB_BUCKETNAME=wunderlist-app
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8091"]
+      test: [ "CMD", "curl", "-f", "http://localhost:8091" ]
       interval: 10s
       timeout: 5s
       retries: 5

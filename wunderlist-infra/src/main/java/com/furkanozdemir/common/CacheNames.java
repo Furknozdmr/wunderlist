@@ -10,6 +10,5 @@ public class CacheNames {
 
     public static final String JWT_REFRESH_TOKEN = "wunderlist::jwt-refresh-token";
 
-
 }
 

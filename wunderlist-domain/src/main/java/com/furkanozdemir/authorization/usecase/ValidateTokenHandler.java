@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 @DomainComponent
 @RequiredArgsConstructor
 public class ValidateTokenHandler implements VoidUseCaseHandler<ValidateTokenUseCase> {
+
     @Override
     public void handle(ValidateTokenUseCase useCase) {
 

@@ -27,10 +27,10 @@ public class TodoListController {
 
     private final VoidUseCaseHandler<AssignTodoListUseCase> assignTodoListUseCaseHandler;
 
-
     @PostMapping(path = "/create-todo-list")
     public ResponseEntity<Void> createTodoList(@RequestBody CreateTodoListRequest createTodoListRequest) {
-        createTodoListUseCaseHandler.handle(new CreateTodoListUseCase(createTodoListRequest.getUserId(),createTodoListRequest.getTitle(),createTodoListRequest.getDescription()));
+        createTodoListUseCaseHandler.handle(new CreateTodoListUseCase(createTodoListRequest.getUserId(), createTodoListRequest.getTitle(),
+                                                                      createTodoListRequest.getDescription()));
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
@@ -42,7 +42,7 @@ public class TodoListController {
 
     @PostMapping(path = "/assign-todo-list")
     public ResponseEntity<Void> assignTodoList(@RequestBody AssignTodoListRequest assignTodoListRequest) {
-        assignTodoListUseCaseHandler.handle(new AssignTodoListUseCase(assignTodoListRequest.getUserId(),assignTodoListRequest.getTodoListId()));
+        assignTodoListUseCaseHandler.handle(new AssignTodoListUseCase(assignTodoListRequest.getUserId(), assignTodoListRequest.getTodoListId()));
         return ResponseEntity.ok().build();
     }
 

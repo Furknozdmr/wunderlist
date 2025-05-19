@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public record TaskDto(String id, String title, String description,AssignUserDto assignUser, String createdBy,
-                      LocalDateTime createdAt, TaskStatus status, LocalDate deadline, LocalDate reminderDate,List<SubTaskDto> subTaskList) {
+public record TaskDto(String id, String title, String description, AssignUserDto assignUser, String createdBy, LocalDateTime createdAt,
+                      TaskStatus status, LocalDate deadline, LocalDate reminderDate, List<SubTaskDto> subTaskList) {
+
 }

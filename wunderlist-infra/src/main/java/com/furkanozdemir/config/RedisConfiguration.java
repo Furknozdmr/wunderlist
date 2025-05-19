@@ -1,6 +1,5 @@
 package com.furkanozdemir.config;
 
-
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
@@ -66,9 +65,9 @@ public class RedisConfiguration {
     @Bean("cache-manager")
     public RedisCacheManager redisCacheManager(RedisTemplate<String, Object> redisTemplate) {
         var redisCacheWriter = RedisCacheWriter.nonLockingRedisCacheWriter(Objects.requireNonNull(redisTemplate.getConnectionFactory()));
-        var redisCacheConfiguration = RedisCacheConfiguration
-                .defaultCacheConfig()
-                .serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(redisTemplate.getValueSerializer()));
+        var redisCacheConfiguration = RedisCacheConfiguration.defaultCacheConfig()
+                                                             .serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(
+                                                                     redisTemplate.getValueSerializer()));
 
         //@formatter:off
         var cacheConfigurationMap =
@@ -89,12 +88,10 @@ public class RedisConfiguration {
         objectMapper.setDateFormat(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"));
         objectMapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-        objectMapper.activateDefaultTyping(LaissezFaireSubTypeValidator.instance,
-                                           ObjectMapper.DefaultTyping.NON_FINAL,
+        objectMapper.activateDefaultTyping(LaissezFaireSubTypeValidator.instance, ObjectMapper.DefaultTyping.NON_FINAL,
                                            JsonTypeInfo.As.WRAPPER_ARRAY);
         return objectMapper;
 
     }
-
 
 }

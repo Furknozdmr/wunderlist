@@ -13,7 +13,7 @@ import java.time.LocalDate;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class SubTask{
+public class SubTask {
 
     @Id
     private String subTaskId;

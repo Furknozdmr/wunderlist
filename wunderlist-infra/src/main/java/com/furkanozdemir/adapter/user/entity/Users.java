@@ -1,8 +1,8 @@
 package com.furkanozdemir.adapter.user.entity;
 
 import lombok.*;
-import org.springframework.data.couchbase.core.mapping.Document;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.couchbase.core.mapping.Document;
 
 import java.time.OffsetDateTime;
 import java.util.List;

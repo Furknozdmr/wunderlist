@@ -1,6 +1,5 @@
 package com.furkanozdemir.adapter.todolist.entity;
 
-
 import lombok.*;
 
 @Getter

@@ -11,7 +11,6 @@ import com.furkanozdemir.user.model.UserDto;
 import com.furkanozdemir.user.port.UserDetailPort;
 import lombok.RequiredArgsConstructor;
 
-import java.util.List;
 import java.util.UUID;
 
 @DomainComponent
@@ -25,6 +24,7 @@ public class CreateTodoListHandler implements VoidUseCaseHandler<CreateTodoListU
     @Override
     public void handle(CreateTodoListUseCase useCase) {
         UserDto userDto = userDetailPort.getUserDtoById(useCase.userId()).orElseThrow(UserNotFoundException::new);
-        todoListPort.createTodoList(new TodoListDto(UUID.randomUUID().toString(), useCase.title(), useCase.description(),new AssignUserDto(userDto.userId(), userDto.firstName(), userDto.lastName())));
+        todoListPort.createTodoList(new TodoListDto(UUID.randomUUID().toString(), useCase.title(), useCase.description(),
+                                                    new AssignUserDto(userDto.userId(), userDto.firstName(), userDto.lastName())));
     }
 }

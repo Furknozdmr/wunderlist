@@ -1,18 +1,20 @@
 package com.furkanozdemir.adapter.todolist;
 
 import com.furkanozdemir.adapter.todolist.entity.Task;
-import com.furkanozdemir.adapter.todolist.entity.TodoList;
 import com.furkanozdemir.adapter.todolist.repository.TaskRepository;
-import com.furkanozdemir.adapter.todolist.repository.TodoListRepository;
 import com.furkanozdemir.common.exception.TaskNotFoundException;
 import com.furkanozdemir.common.mapper.TaskMapper;
-import com.furkanozdemir.common.mapper.TodoListMapper;
-import com.furkanozdemir.todolist.port.*;
+import com.furkanozdemir.todolist.port.SubTaskDto;
+import com.furkanozdemir.todolist.port.TaskDto;
+import com.furkanozdemir.todolist.port.TaskPort;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import static java.util.Objects.isNull;
 
 @Slf4j
 @Service
@@ -47,8 +49,13 @@ public class TaskDataAdapter implements TaskPort {
     }
 
     @Override
-    public void deleteSubTaskById(String id) {
-        //TODO silme yapılacak
+    public void deleteSubTaskById(String subTaskId, String taskId) {
+        Task task = taskRepository.findById(taskId).orElseThrow(() -> new TaskNotFoundException(taskId));
+        if (isNull(task.getSubTaskList()) || task.getSubTaskList().isEmpty()) {
+            return;
+        }
+        task.getSubTaskList().removeIf(subTask -> subTask.getSubTaskId().equals(subTaskId));
+        taskRepository.save(task);
     }
 
     @Override
@@ -57,8 +64,13 @@ public class TaskDataAdapter implements TaskPort {
     }
 
     @Override
-    public void createSubTask(SubTaskDto subTaskDto) {
+    public void createSubTask(SubTaskDto subTaskDto, String taskId) {
+        Task task = taskRepository.findById(taskId).orElseThrow(() -> new TaskNotFoundException(taskId));
+        if (isNull(task.getSubTaskList())) {
+            task.setSubTaskList(new ArrayList<>());
+        }
         var subTask = taskMapper.toEntity(subTaskDto);
-        //TODO save
+        task.getSubTaskList().add(subTask);
+        taskRepository.save(task);
     }
 }

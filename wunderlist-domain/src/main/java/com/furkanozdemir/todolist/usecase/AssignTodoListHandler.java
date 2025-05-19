@@ -11,6 +11,6 @@ public class AssignTodoListHandler implements VoidUseCaseHandler<AssignTodoListU
 
     @Override
     public void handle(AssignTodoListUseCase useCase) {
-    //TODO unutma içini doldur
+        //TODO unutma içini doldur
     }
 }
