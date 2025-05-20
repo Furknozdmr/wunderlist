@@ -4,25 +4,27 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 
 import java.util.Collections;
 
 @Configuration
 @RequiredArgsConstructor
+@EnableWebSecurity
 public class WebSecurityConfig {
 
-    private static final String[] WHITE_LIST = new String[]{"/auth/sign-up", "/auth/sign-out", "/auth/validate-token",
-            "/auth/validate-refresh-token"};
+    private static final String[] WHITE_LIST = new String[]{"/auth/sign-up", "/auth/sign-out", "/auth/validate-token", "/auth/sign-in",
+            "/swagger-ui/**", "/swagger-resources", "/swagger-resources/**", "/configuration/**", "/configuration/ui", "/configuration/security",
+            "/swagger-ui.html", "/webjars/**", "/v3/api-docs/**", "/swagger*/**", "/actuator/health"};
 
-    // private final TokenCacheService tokenCacheService;
-
-    // private final TokenService tokenService;
+    private final JWTValidatorFilter jwtValidatorFilter;
 
     @Bean
     public SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
@@ -40,12 +42,10 @@ public class WebSecurityConfig {
 
                 }))
                 .csrf(AbstractHttpConfigurer::disable)
-                // .addFilterAfter(new JWTGeneratorFilter(tokenCacheService, tokenService), BasicAuthenticationFilter.class)
-                .authorizeHttpRequests(r-> r.requestMatchers(WHITE_LIST).permitAll()
-                        .requestMatchers("/auth/sign-in").authenticated())
+                .authorizeHttpRequests(r-> r.requestMatchers(WHITE_LIST).permitAll().anyRequest().authenticated())
                 .formLogin(AbstractHttpConfigurer::disable)
-                .httpBasic(c -> c.init(http));
-        //@formatter:on
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .addFilterBefore(jwtValidatorFilter, UsernamePasswordAuthenticationFilter.class);//@formatter:on
 
         return httpSecurity.build();
 

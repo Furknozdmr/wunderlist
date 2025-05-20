@@ -25,6 +25,6 @@ public class CreateTodoListHandler implements VoidUseCaseHandler<CreateTodoListU
     public void handle(CreateTodoListUseCase useCase) {
         UserDto userDto = userDetailPort.getUserDtoById(useCase.userId()).orElseThrow(UserNotFoundException::new);
         todoListPort.createTodoList(new TodoListDto(UUID.randomUUID().toString(), useCase.title(), useCase.description(),
-                                                    new AssignUserDto(userDto.userId(), userDto.firstName(), userDto.lastName())));
+                                                    new AssignUserDto(userDto.userId(),userDto.email(), userDto.firstName(), userDto.lastName())));
     }
 }

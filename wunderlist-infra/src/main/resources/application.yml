@@ -4,24 +4,33 @@ server:
     context-path: /wunderlist-api
 
 spring:
+  couchbase:
+    connection-string: localhost
+    username: admin
+    password: password
+
+
   application:
     name: wunderlist-api
   data:
     couchbase:
-      connection-string: couchbase://couchbase
-      username: admin
-      password: password
-      bucket-name: your-bucket-name
-      scope-name: your-scope-name
+      bucket-name: wunderlist-app
 
     redis:
-      cluster:
-        nodes: redis:6379
       connect-timeout: 1500
       timeout: 3000
+      host: redis
+      port: 6379
 
 
 jwt:
   secret: fasdgafdagvvfdagdfahgsdjvajgdfadghfasdhafdafdahfdahsgdfsahdfahdajfdadfsahdfadhafahvdafd
   accessTokenExpiration: 1800000
   refreshTokenExpiration: 3600000
+springdoc:
+  default-produces-media-type: application/json
+  default-consumes-media-type: application/json
+  api-docs:
+    enabled: true
+  swagger-ui:
+    path: /swagger-ui.html

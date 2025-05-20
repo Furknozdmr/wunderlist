@@ -14,4 +14,6 @@ public interface UserDetailPort {
     void createUser(String email, String firstName, String lastName, String password);
 
     AssignUserDto getAssignUserDtoById(String userId);
+
+    AssignUserDto getAssignUserDtoByEmail(String email);
 }

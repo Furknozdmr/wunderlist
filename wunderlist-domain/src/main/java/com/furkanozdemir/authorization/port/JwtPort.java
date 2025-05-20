@@ -9,4 +9,6 @@ public interface JwtPort {
     String generateRefreshToken(String email);
 
     String extractUserMailByToken(String token);
+
+    boolean validateToken(String token);
 }

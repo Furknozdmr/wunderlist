@@ -5,6 +5,7 @@ import com.furkanozdemir.adapter.authorization.model.SignInRequest;
 import com.furkanozdemir.authorization.usecase.model.*;
 import com.furkanozdemir.authorization.usecase.model.response.RefreshTokenResponse;
 import com.furkanozdemir.authorization.usecase.model.response.UserInfoResponse;
+import com.furkanozdemir.common.usecase.BooleanUseCaseHandler;
 import com.furkanozdemir.common.usecase.UseCaseHandler;
 import com.furkanozdemir.common.usecase.VoidUseCaseHandler;
 import com.furkanozdemir.common.usecase.model.NewUserUseCase;
@@ -24,9 +25,7 @@ public class AuthorizationController {
 
     private final VoidUseCaseHandler<LogoutUseCase> logoutUseCaseHandler;
 
-    private final VoidUseCaseHandler<ValidateTokenUseCase> validateTokenUseCaseHandler;
-
-    private final VoidUseCaseHandler<ValidateRefreshTokenUseCase> validateRefreshTokenUseCaseHandler;
+    private final BooleanUseCaseHandler<ValidateTokenUseCase> validateTokenUseCaseHandler;
 
     private final UseCaseHandler<RefreshTokenResponse, RefreshTokenUseCase> refreshTokenUseCaseHandler;
 
@@ -51,15 +50,9 @@ public class AuthorizationController {
     }
 
     @PostMapping(path = "/validate-token")
-    public ResponseEntity<Void> validateToken(@RequestHeader(value = "Authorization") String token) {
-        validateTokenUseCaseHandler.handle(new ValidateTokenUseCase(token));
-        return ResponseEntity.ok().build();
-    }
-
-    @PostMapping(path = "/validate-refresh-token")
-    public ResponseEntity<Void> validateRefreshToken(@RequestHeader(value = "Refresh-Token") String refreshToken) {
-        validateRefreshTokenUseCaseHandler.handle(new ValidateRefreshTokenUseCase(refreshToken));
-        return ResponseEntity.ok().build();
+    public ResponseEntity<Boolean> validateToken(@RequestHeader(value = "Authorization") String token) {
+        Boolean isValid = validateTokenUseCaseHandler.handle(new ValidateTokenUseCase(token));
+        return ResponseEntity.ok(isValid);
     }
 
     @PostMapping(path = "/refresh-token")

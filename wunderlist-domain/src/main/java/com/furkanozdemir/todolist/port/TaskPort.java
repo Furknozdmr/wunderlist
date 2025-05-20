@@ -1,5 +1,8 @@
 package com.furkanozdemir.todolist.port;
 
+import com.furkanozdemir.common.enums.TaskStatus;
+import com.furkanozdemir.user.model.AssignUserDto;
+
 import java.util.List;
 
 public interface TaskPort {
@@ -17,4 +20,8 @@ public interface TaskPort {
     void createTask(TaskDto taskDto);
 
     void createSubTask(SubTaskDto subTaskDto, String taskId);
+
+    void changeTaskStatus(String taskId, TaskStatus status);
+
+    void assignTask(String taskId, AssignUserDto assignUserDto);
 }

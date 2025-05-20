@@ -1,5 +1,6 @@
 package com.furkanozdemir.config;
 
+import com.furkanozdemir.adapter.authorization.JwtAdapter;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
@@ -12,6 +13,7 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.crypto.SecretKey;
@@ -20,10 +22,9 @@ import java.nio.charset.StandardCharsets;
 
 import static java.util.Objects.nonNull;
 
+@Component
 @RequiredArgsConstructor
 public class JWTValidatorFilter extends OncePerRequestFilter {
-
-    public static final String JWT_KEY = "jxgEQeXHuPq8VdbyYFNkANdudQ53YUn4";
 
     public static final String AUTHORIZATION_HEADER = "Authorization";
 
@@ -35,12 +36,9 @@ public class JWTValidatorFilter extends OncePerRequestFilter {
         if (nonNull(jwt)) {
             try {
 
-                SecretKey key = Keys.hmacShaKeyFor(JWT_KEY.getBytes(StandardCharsets.UTF_8));
-                Claims payload = Jwts.parser().verifyWith(key).build().parseSignedClaims(jwt).getPayload();
+                String useremail = JwtAdapter.extractClaim(jwt, Claims::getSubject);
 
-                String username = String.valueOf(payload.get("username"));
-
-                Authentication auth = new UsernamePasswordAuthenticationToken(username, null, null);
+                Authentication auth = new UsernamePasswordAuthenticationToken(useremail, null, null);
                 SecurityContextHolder.getContext().setAuthentication(auth);
 
             } catch (Exception e) {
@@ -54,7 +52,7 @@ public class JWTValidatorFilter extends OncePerRequestFilter {
 
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) {
-        return request.getServletPath().equals("/sign-in");
+        return request.getServletPath().equals("/sign-in") || request.getServletPath().equals("/validate-token") || request.getServletPath().equals("/sign-up") ;
     }
 
 }

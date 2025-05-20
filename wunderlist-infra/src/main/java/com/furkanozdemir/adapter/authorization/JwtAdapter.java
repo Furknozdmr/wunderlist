@@ -1,8 +1,11 @@
 package com.furkanozdemir.adapter.authorization;
 
 import com.furkanozdemir.authorization.port.JwtPort;
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtParser;
 import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -12,17 +15,18 @@ import org.springframework.stereotype.Service;
 
 import javax.crypto.SecretKey;
 import java.nio.charset.StandardCharsets;
+import java.security.Key;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.Function;
 
 @Slf4j
 @Service
 @RequiredArgsConstructor
 public class JwtAdapter implements JwtPort {
 
-    @Value("${jwt.secret}")
-    private String secret;
+    private static String secret;
 
     @Value("${jwt.accessTokenExpiration}")
     private Long accessTokenExpiration;
@@ -31,6 +35,11 @@ public class JwtAdapter implements JwtPort {
     private Long refreshTokenExpiration;
 
     private final PasswordEncoder passwordEncoder;
+
+    @Value("${jwt.secret}")
+    public void setSecret(String secretKey) {
+        JwtAdapter.secret = secretKey;
+    }
 
     @Override
     public boolean isMatchPasswords(String usecasePassword, String userPassword) {
@@ -51,40 +60,60 @@ public class JwtAdapter implements JwtPort {
 
     @Override
     public String extractUserMailByToken(String token) {
-        Map<String, ?> tokenBody = getTokenBody(token);
-        return (String) tokenBody.get("sub");
+      return extractClaim(token, Claims::getSubject);
+    }
+
+    @Override
+    public boolean validateToken(String token) {
+        return isTokenExpired(token);
+    }
+
+    private boolean isTokenExpired(String token) {
+        return extractExpiration(token).before(new Date());
+    }
+
+    private Date extractExpiration(String token) {
+        return extractClaim(token, Claims::getExpiration);
+    }
+
+    public static <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
+        final Claims claims = extractAllClaims(token);
+        return claimsResolver.apply(claims);
+    }
+
+    private static Claims extractAllClaims(String token) {
+        return Jwts
+                .parser()
+                .setSigningKey(getSignInKey())
+                .build()
+                .parseClaimsJws(token)
+                .getBody();
+    }
+
+    private static Key getSignInKey() {
+        byte[] keyBytes = Decoders.BASE64.decode(secret);
+        return Keys.hmacShaKeyFor(keyBytes);
     }
 
     private String token(String email) {
-        Date now = new Date();
-        Date expirationDate = new Date(now.getTime() + accessTokenExpiration);
-        Map<String, Object> headerClaims = new HashMap<>();
-        headerClaims.put("typ", "JWT");
-        headerClaims.put("alg", "HS512");
-
-        SecretKey secretKey = Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8));
-        return Jwts.builder().subject(email).issuedAt(now).claims(headerClaims).expiration(expirationDate).signWith(secretKey).compact();
+        return Jwts
+                .builder()
+                .setClaims(new HashMap<>())
+                .setSubject(email)
+                .setIssuedAt(new Date(System.currentTimeMillis()))
+                .setExpiration(new Date(System.currentTimeMillis() + accessTokenExpiration))
+                .signWith(getSignInKey(), SignatureAlgorithm.HS512)
+                .compact();
     }
 
     private String refreshToken(String email) {
-        Date now = new Date();
-        Date expirationDate = new Date(now.getTime() + refreshTokenExpiration);
-        Map<String, Object> headerClaims = new HashMap<>();
-        headerClaims.put("typ", "JWT");
-        headerClaims.put("alg", "HS512");
-
-        SecretKey secretKey = Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8));
-        return Jwts.builder().subject(email).issuedAt(now).claims(headerClaims).expiration(expirationDate).signWith(secretKey).compact();
-    }
-
-    private Map<String, ?> getTokenBody(String token) {
-        SecretKey secretKey = Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8));
-        try {
-            JwtParser build = Jwts.parser().verifyWith(secretKey).build();
-            var payload = (Map<String, ?>) build.parse(token).getPayload();
-            return payload;
-        } catch (Exception e) {
-            return Map.of();
-        }
+        return Jwts
+                .builder()
+                .setClaims(new HashMap<>())
+                .setSubject(email)
+                .setIssuedAt(new Date(System.currentTimeMillis()))
+                .setExpiration(new Date(System.currentTimeMillis() + refreshTokenExpiration))
+                .signWith(getSignInKey(), SignatureAlgorithm.HS512)
+                .compact();
     }
 }

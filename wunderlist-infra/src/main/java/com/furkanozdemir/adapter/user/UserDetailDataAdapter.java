@@ -12,6 +12,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @Slf4j
 @Service
@@ -46,14 +47,22 @@ public class UserDetailDataAdapter implements UserDetailPort {
     @Override
     public void createUser(String email, String firstName, String lastName, String password) {
         var encodedPassword = passwordEncoder.encode(password);
-        Users user = Users.builder().firstName(firstName).lastName(lastName).email(email).password(encodedPassword).build();
+        Users user = Users.builder()
+                .userId(UUID.randomUUID().toString())
+                          .firstName(firstName).lastName(lastName).email(email).password(encodedPassword).build();
         userRepository.save(user);
     }
 
     @Override
     public AssignUserDto getAssignUserDtoById(String userId) {
-        Users users = userRepository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
-        return new AssignUserDto(users.getUserId(), users.getFirstName(), users.getLastName());
+        Users users = userRepository.findById(userId).orElseThrow(() -> new UserNotFoundException());
+        return new AssignUserDto(users.getUserId(),users.getEmail(), users.getFirstName(), users.getLastName());
+    }
+
+    @Override
+    public AssignUserDto getAssignUserDtoByEmail(String email) {
+        Users users = userRepository.findByEmail(email).orElseThrow(() -> new UserNotFoundException(email));
+        return new AssignUserDto(users.getUserId(),users.getEmail(), users.getFirstName(), users.getLastName());
     }
 
 }

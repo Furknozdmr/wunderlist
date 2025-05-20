@@ -16,6 +16,7 @@ import org.springframework.data.redis.cache.RedisCacheConfiguration;
 import org.springframework.data.redis.cache.RedisCacheManager;
 import org.springframework.data.redis.cache.RedisCacheWriter;
 import org.springframework.data.redis.connection.RedisClusterConfiguration;
+import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
@@ -34,12 +35,15 @@ import java.util.stream.Collectors;
 @EnableCaching
 public class RedisConfiguration {
 
-    @Value(value = "${spring.data.redis.cluster.nodes:localhost:6379}")
-    private String clusterNode;
+    @Value(value = "${spring.data.redis.host:redis}")
+    private String host;
+
+    @Value(value = "${spring.data.redis.port:6379}")
+    private Integer port;
 
     @Bean
     public JedisConnectionFactory jedisConnectionFactory() {
-        return new JedisConnectionFactory(new RedisClusterConfiguration(List.of(clusterNode)));
+        return new JedisConnectionFactory(new RedisStandaloneConfiguration(host,port));
 
     }
 

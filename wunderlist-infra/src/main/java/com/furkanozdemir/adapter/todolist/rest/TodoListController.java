@@ -42,7 +42,7 @@ public class TodoListController {
 
     @PostMapping(path = "/assign-todo-list")
     public ResponseEntity<Void> assignTodoList(@RequestBody AssignTodoListRequest assignTodoListRequest) {
-        assignTodoListUseCaseHandler.handle(new AssignTodoListUseCase(assignTodoListRequest.getUserId(), assignTodoListRequest.getTodoListId()));
+        assignTodoListUseCaseHandler.handle(new AssignTodoListUseCase(assignTodoListRequest.getUserEmail(), assignTodoListRequest.getTodoListId()));
         return ResponseEntity.ok().build();
     }
 

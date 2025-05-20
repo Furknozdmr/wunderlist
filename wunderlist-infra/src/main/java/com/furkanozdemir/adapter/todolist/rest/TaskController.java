@@ -1,7 +1,7 @@
 package com.furkanozdemir.adapter.todolist.rest;
 
-import com.furkanozdemir.adapter.todolist.model.CreateSubTaskRequest;
-import com.furkanozdemir.adapter.todolist.model.CreateTaskRequest;
+import com.furkanozdemir.adapter.todolist.model.*;
+import com.furkanozdemir.common.enums.TaskStatus;
 import com.furkanozdemir.common.usecase.UseCaseHandler;
 import com.furkanozdemir.common.usecase.VoidUseCaseHandler;
 import com.furkanozdemir.todolist.usecase.model.*;
@@ -28,7 +28,9 @@ public class TaskController {
 
     private final VoidUseCaseHandler<DeleteSubTaskUseCase> deleteSubTaskUseCaseHandler;
 
-    //private final VoidUseCaseHandler<AssignTaskUseCase> assignTaskUseCaseHandler;
+    private final VoidUseCaseHandler<AssignTaskUseCase> assignTaskUseCaseHandler;
+
+    private final VoidUseCaseHandler<ChangeTaskStatusUseCase> changeTaskStatusUseCaseHandler;
 
     @PostMapping(path = "/create-task")
     public ResponseEntity<Void> createTask(@RequestBody CreateTaskRequest createTaskRequest) {
@@ -59,11 +61,11 @@ public class TaskController {
         return ResponseEntity.ok().build();
     }
 
-    //    @PostMapping(path = "/assign-task")
-    //    public ResponseEntity<Void> assignTask(@RequestBody AssignTodoListRequest assignTodoListRequest) {
-    //        assignTodoListUseCaseHandler.handle(new AssignTodoListUseCase(assignTodoListRequest.getUserId(),assignTodoListRequest.getTodoListId()));
-    //        return ResponseEntity.ok().build();
-    //    } //TODO Yetişirse bak
+    @PostMapping(path = "/assign-task")
+    public ResponseEntity<Void> assignTask(@RequestBody AssignTaskRequest assignTaskRequest) {
+        assignTaskUseCaseHandler.handle(new AssignTaskUseCase(assignTaskRequest.getUserEmail(), assignTaskRequest.getTaskId()));
+        return ResponseEntity.ok().build();
+    }
 
     @GetMapping(path = "/{userId}/get-user-tasks")
     public ResponseEntity<TasksResponse> getUserTasks(@PathVariable("userId") String userId) {
@@ -75,5 +77,11 @@ public class TaskController {
     public ResponseEntity<TasksResponse> getListTasks(@PathVariable("listId") String listId) {
         TasksResponse response = listTasksUseCaseHandler.handle(new ListTaskUseCase(listId));
         return ResponseEntity.ok(response);
+    }
+
+    @PutMapping(path = "/change-task-status/{taskId}")
+    public ResponseEntity<Void> changeTaskStatus(@PathVariable("taskId") String taskId, @RequestBody ChangeTaskStatusRequest request) {
+        changeTaskStatusUseCaseHandler.handle(new ChangeTaskStatusUseCase(taskId, request.getNewStatus()));
+        return ResponseEntity.ok().build();
     }
 }

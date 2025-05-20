@@ -2,11 +2,13 @@ package com.furkanozdemir.adapter.todolist;
 
 import com.furkanozdemir.adapter.todolist.entity.Task;
 import com.furkanozdemir.adapter.todolist.repository.TaskRepository;
+import com.furkanozdemir.common.enums.TaskStatus;
 import com.furkanozdemir.common.exception.TaskNotFoundException;
 import com.furkanozdemir.common.mapper.TaskMapper;
 import com.furkanozdemir.todolist.port.SubTaskDto;
 import com.furkanozdemir.todolist.port.TaskDto;
 import com.furkanozdemir.todolist.port.TaskPort;
+import com.furkanozdemir.user.model.AssignUserDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -71,6 +73,20 @@ public class TaskDataAdapter implements TaskPort {
         }
         var subTask = taskMapper.toEntity(subTaskDto);
         task.getSubTaskList().add(subTask);
+        taskRepository.save(task);
+    }
+
+    @Override
+    public void changeTaskStatus(String taskId, TaskStatus status) {
+        Task task = taskRepository.findById(taskId).orElseThrow(() -> new TaskNotFoundException(taskId));
+        task.setStatus(status);
+        taskRepository.save(task);
+    }
+
+    @Override
+    public void assignTask(String taskId, AssignUserDto assignUserDto) {
+        Task task = taskRepository.findById(taskId).orElseThrow(() -> new TaskNotFoundException(taskId));
+        task.setAssignUser(taskMapper.toEntity(assignUserDto));
         taskRepository.save(task);
     }
 }
