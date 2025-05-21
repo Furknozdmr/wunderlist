@@ -22,7 +22,7 @@ wunderlist-app" adında yeni bir bucket oluşturun.
 
 Uygulamayı Başlatma: wunderlist-infra paketi altında bulunan WunderlistApplication dosyasını çalıştırın. Bu, Spring Boot uygulamasını başlatacaktır.
 
-API Testleri: Uygulama başlatıldıktan sonra, projeyle birlikte verilen Postman Collection'ı Postman'e import ederek uygulama uç noktalarına (
+API Testleri: Uygulama başlatıldıktan sonra, projeyle birlikte verilen Postman Collection'ı(Postman Collection Json dosyası şekilde proje içerisinde yer almaktadır.) Postman'e import ederek uygulama uç noktalarına (
 endpoints) istekler gönderebilir ve sonuçları gözlemleyebilirsiniz.
 
 Uygulamanın Geliştirilmesi Gereken Kısımlar
