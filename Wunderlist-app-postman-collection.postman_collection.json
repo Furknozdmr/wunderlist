@@ -1,0 +1,506 @@
+{
+  "info": {
+    "_postman_id": "9930fa9a-9f73-4e53-a9e6-0bd7e6147a91",
+    "name": "Wunderlist-app-postman-collection",
+    "description": "# 🚀 Get started here\n\nThis template guides you through CRUD operations (GET, POST, PUT, DELETE), variables, and tests.\n\n## 🔖 **How to use this template**\n\n#### **Step 1: Send requests**\n\nRESTful APIs allow you to perform CRUD operations using the POST, GET, PUT, and DELETE HTTP methods.\n\nThis collection contains each of these [request](https://learning.postman.com/docs/sending-requests/requests/) types. Open each request and click \"Send\" to see what happens.\n\n#### **Step 2: View responses**\n\nObserve the response tab for status code (200 OK), response time, and size.\n\n#### **Step 3: Send new Body data**\n\nUpdate or add new data in \"Body\" in the POST request. Typically, Body data is also used in PUT request.\n\n```\n{\n    \"name\": \"Add your name in the body\"\n}\n\n ```\n\n#### **Step 4: Update the variable**\n\nVariables enable you to store and reuse values in Postman. We have created a [variable](https://learning.postman.com/docs/sending-requests/variables/) called `base_url` with the sample request [https://postman-api-learner.glitch.me](https://postman-api-learner.glitch.me). Replace it with your API endpoint to customize this collection.\n\n#### **Step 5: Add tests in the \"Scripts\" tab**\n\nAdding tests to your requests can help you confirm that your API is working as expected. You can write test scripts in JavaScript and view the output in the \"Test Results\" tab.\n\n<img src=\"https://content.pstmn.io/fa30ea0a-373d-4545-a668-e7b283cca343/aW1hZ2UucG5n\" alt=\"\" height=\"1530\" width=\"2162\">\n\n## 💪 Pro tips\n\n- Use folders to group related requests and organize the collection.\n    \n- Add more [scripts](https://learning.postman.com/docs/writing-scripts/intro-to-scripts/) to verify if the API works as expected and execute workflows.\n    \n\n## 💡Related templates\n\n[API testing basics](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=e9a37a28-055b-49cd-8c7e-97494a21eb54&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)  \n[API documentation](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=e9c28f47-1253-44af-a2f3-20dce4da1f18&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)  \n[Authorization methods](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=31a9a6ed-4cdf-4ced-984c-d12c9aec1c27&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "45099545",
+    "_collection_link": "https://universal-shuttle-8243824.postman.co/workspace/Furkan-%C3%96zdemir's-Workspace~70a4ed18-7ac1-4bd7-8e2c-8743be9ffd2f/collection/45099545-9930fa9a-9f73-4e53-a9e6-0bd7e6147a91?action=share&source=collection_link&creator=45099545"
+  },
+  "item": [
+    {
+      "name": "create-task",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "accept",
+            "value": "*/*"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJmdXJrbm96ZG1yQGhvdG1haWwuY29tIiwiaWF0IjoxNzQ3ODE3OTI0LCJleHAiOjE3NDc4MTk3MjR9.6c9lm03TajzNOjZ2HQpQSEEOB649tC7-JhpcS6fz_BvM-5RL0R7pJHv7o2pZrSXP3-tlxyKyn8FB3yrPN7pvlA",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"listId\": \"string\",\n  \"userId\": \"1df5c266-55ce-4706-8344-9557effc7cc5\",\n  \"title\": \"deneme 1111\",\n  \"description\": \"açıklama\",\n  \"deadline\": \"2025-05-19\",\n  \"reminderDate\": \"2025-05-19\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:9090/wunderlist-api/task/create-task",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "9090",
+          "path": [
+            "wunderlist-api",
+            "task",
+            "create-task"
+          ]
+        },
+        "description": "Generated from cURL: curl -X 'POST' \\\n  'http://localhost:9090/wunderlist-api/task/create-task' \\\n  -H 'accept: */*' \\\n  -H 'Content-Type: application/json' \\\n  -d '{\n  \"listId\": \"string\",\n  \"userId\": \"string\",\n  \"title\": \"string\",\n  \"description\": \"string\",\n  \"deadline\": \"2025-05-19\",\n  \"reminderDate\": \"2025-05-19\"\n}'"
+      },
+      "response": []
+    },
+    {
+      "name": "create-todo-list",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "accept",
+            "value": "*/*"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJmdXJrbm96ZG1yQGhvdG1haWwuY29tIiwiaWF0IjoxNzQ3ODE3OTI0LCJleHAiOjE3NDc4MTk3MjR9.6c9lm03TajzNOjZ2HQpQSEEOB649tC7-JhpcS6fz_BvM-5RL0R7pJHv7o2pZrSXP3-tlxyKyn8FB3yrPN7pvlA",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"userId\": \"1df5c266-55ce-4706-8344-9557effc7cc5\",\n  \"title\": \"deneme 2\",\n  \"description\": \"deneme 1 2 3 4\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:9090/wunderlist-api/list/create-todo-list",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "9090",
+          "path": [
+            "wunderlist-api",
+            "list",
+            "create-todo-list"
+          ]
+        },
+        "description": "Generated from cURL: curl -X 'POST' \\\n  'http://localhost:9090/wunderlist-api/list/create-todo-list' \\\n  -H 'accept: */*' \\\n  -H 'Content-Type: application/json' \\\n  -d '{\n  \"userId\": \"string\",\n  \"title\": \"string\",\n  \"description\": \"string\"\n}'"
+      },
+      "response": []
+    },
+    {
+      "name": "Sign-up",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "accept",
+            "value": "*/*"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Furkan1\",\n  \"surname\": \"Özdemir1\",\n  \"email\": \"furknozdmr1@hotmail.com\",\n  \"password\": \"furkan123\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:9090/wunderlist-api/auth/sign-up",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "9090",
+          "path": [
+            "wunderlist-api",
+            "auth",
+            "sign-up"
+          ]
+        },
+        "description": "Generated from cURL: curl -X 'POST' \\\n  'http://localhost:9090/wunderlist-api/auth/sign-up' \\\n  -H 'accept: */*' \\\n  -H 'Content-Type: application/json' \\\n  -d '{\n  \"name\": \"Furkan\",\n  \"surname\": \"Özdemir\",\n  \"email\": \"furknozdmr@hotmail.com\",\n  \"password\": \"furkan123\"\n}'"
+      },
+      "response": []
+    },
+    {
+      "name": "sign-in",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"furknozdmr@hotmail.com\",\n  \"password\": \"furkan123\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:9090/wunderlist-api/auth/sign-in",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "9090",
+          "path": [
+            "wunderlist-api",
+            "auth",
+            "sign-in"
+          ]
+        },
+        "description": "Generated from cURL: curl -X 'POST' \\\n  'http://localhost:9090/wunderlist-api/auth/sign-in' \\\n  -H 'accept: application/json' \\\n  -H 'Content-Type: application/json' \\\n  -d '{\n  \"email\": \"furknozdmr@hotmail.com\",\n  \"password\": \"furkan123\"\n}'"
+      },
+      "response": []
+    },
+    {
+      "name": "get-task",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJmdXJrbm96ZG1yQGhvdG1haWwuY29tIiwiaWF0IjoxNzQ3ODE3OTI0LCJleHAiOjE3NDc4MTk3MjR9.6c9lm03TajzNOjZ2HQpQSEEOB649tC7-JhpcS6fz_BvM-5RL0R7pJHv7o2pZrSXP3-tlxyKyn8FB3yrPN7pvlA",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:9090/wunderlist-api/task/1df5c266-55ce-4706-8344-9557effc7cc5/get-user-tasks",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "9090",
+          "path": [
+            "wunderlist-api",
+            "task",
+            "1df5c266-55ce-4706-8344-9557effc7cc5",
+            "get-user-tasks"
+          ]
+        },
+        "description": "Generated from cURL: curl -X 'GET' \\\n  'http://localhost:9090/wunderlist-api/task/139f3492-3ea4-476f-af51-7b40fa304355/get-user-tasks' \\\n  -H 'accept: application/json'"
+      },
+      "response": []
+    },
+    {
+      "name": "Create-sub-task",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "accept",
+            "value": "*/*"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJmdXJrbm96ZG1yQGhvdG1haWwuY29tIiwiaWF0IjoxNzQ3NzUwMTYxLCJleHAiOjE3NDc3NTE5NjF9.mqyNEdhZF_9rC7Qjk1z-T9EVVpG8rS0kEuYW1qvlxlgjz77jO7GquRzJMDAx4FqDr3mrX0H4q2lVCNMG5-nU_w",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"taskId\": \"26fcff55-85b8-4261-8d3d-705c92a57de9\",\n  \"userId\": \"139f3492-3ea4-476f-af51-7b40fa304355\",\n  \"title\": \"string23\",\n  \"description\": \"string24\",\n  \"deadline\": \"2025-05-20\",\n  \"reminderDate\": \"2025-05-20\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:9090/wunderlist-api/task/create-sub-task",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "9090",
+          "path": [
+            "wunderlist-api",
+            "task",
+            "create-sub-task"
+          ]
+        },
+        "description": "Generated from cURL: curl -X 'POST' \\\n  'http://localhost:9090/wunderlist-api/task/create-sub-task' \\\n  -H 'accept: */*' \\\n  -H 'Content-Type: application/json' \\\n  -d '{\n  \"taskId\": \"26fcff55-85b8-4261-8d3d-705c92a57de9\",\n  \"userId\": \"139f3492-3ea4-476f-af51-7b40fa304355\",\n  \"title\": \"string\",\n  \"description\": \"string\",\n  \"deadline\": \"2025-05-20\",\n  \"reminderDate\": \"2025-05-20\"\n}'"
+      },
+      "response": []
+    },
+    {
+      "name": "sign-out",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "accept",
+            "value": "*/*"
+          },
+          {
+            "key": "Refresh-Token",
+            "value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJmdXJrbm96ZG1yQGhvdG1haWwuY29tIiwiaWF0IjoxNzQ3ODE3OTI0LCJleHAiOjE3NDc4MjE1MjR9.hKlBYzX9M8PWqoUBsZh30J0fV1_A_eBu_gEM4XhCIfyRW7Q0xcM7c2CaVWsxcUBpWC3oVVrLgns8wSAxhf7keQ"
+          },
+          {
+            "key": "Authorization",
+            "value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJmdXJrbm96ZG1yQGhvdG1haWwuY29tIiwiaWF0IjoxNzQ3ODE3OTI0LCJleHAiOjE3NDc4MTk3MjR9.6c9lm03TajzNOjZ2HQpQSEEOB649tC7-JhpcS6fz_BvM-5RL0R7pJHv7o2pZrSXP3-tlxyKyn8FB3yrPN7pvlA",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:9090/wunderlist-api/auth/sign-out",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "9090",
+          "path": [
+            "wunderlist-api",
+            "auth",
+            "sign-out"
+          ]
+        },
+        "description": "Generated from cURL: curl -X 'POST' \\\n  'http://localhost:9090/wunderlist-api/auth/sign-out' \\\n  -H 'accept: */*' \\\n  -H 'Refresh-Token: eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJmdXJrbm96ZG1yQGhvdG1haWwuY29tIiwiaWF0IjoxNzQ3ODE3OTI0LCJleHAiOjE3NDc4MjE1MjR9.hKlBYzX9M8PWqoUBsZh30J0fV1_A_eBu_gEM4XhCIfyRW7Q0xcM7c2CaVWsxcUBpWC3oVVrLgns8wSAxhf7keQ' \\\n  -d ''"
+      },
+      "response": []
+    },
+    {
+      "name": "refresh-token",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Refresh-Token",
+            "value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJmdXJrbm96ZG1yQGhvdG1haWwuY29tIiwiaWF0IjoxNzQ3ODE3OTI0LCJleHAiOjE3NDc4MjE1MjR9.hKlBYzX9M8PWqoUBsZh30J0fV1_A_eBu_gEM4XhCIfyRW7Q0xcM7c2CaVWsxcUBpWC3oVVrLgns8wSAxhf7keQ"
+          },
+          {
+            "key": "Authorization",
+            "value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJmdXJrbm96ZG1yQGhvdG1haWwuY29tIiwiaWF0IjoxNzQ3ODE3OTI0LCJleHAiOjE3NDc4MjE1MjR9.hKlBYzX9M8PWqoUBsZh30J0fV1_A_eBu_gEM4XhCIfyRW7Q0xcM7c2CaVWsxcUBpWC3oVVrLgns8wSAxhf7keQ",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:9090/wunderlist-api/auth/refresh-token",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "9090",
+          "path": [
+            "wunderlist-api",
+            "auth",
+            "refresh-token"
+          ]
+        },
+        "description": "Generated from cURL: curl -X 'POST' \\\n  'http://localhost:9090/wunderlist-api/auth/refresh-token' \\\n  -H 'accept: application/json' \\\n  -H 'Refresh-Token: eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJmdXJrbm96ZG1yQGhvdG1haWwuY29tIiwiaWF0IjoxNzQ3ODE3OTI0LCJleHAiOjE3NDc4MjE1MjR9.hKlBYzX9M8PWqoUBsZh30J0fV1_A_eBu_gEM4XhCIfyRW7Q0xcM7c2CaVWsxcUBpWC3oVVrLgns8wSAxhf7keQ' \\\n  -d ''"
+      },
+      "response": []
+    },
+    {
+      "name": "get-todo-list",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJmdXJrbm96ZG1yQGhvdG1haWwuY29tIiwiaWF0IjoxNzQ3ODE3OTI0LCJleHAiOjE3NDc4MTk3MjR9.6c9lm03TajzNOjZ2HQpQSEEOB649tC7-JhpcS6fz_BvM-5RL0R7pJHv7o2pZrSXP3-tlxyKyn8FB3yrPN7pvlA",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:9090/wunderlist-api/list/1df5c266-55ce-4706-8344-9557effc7cc5/get-todo-lists",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "9090",
+          "path": [
+            "wunderlist-api",
+            "list",
+            "1df5c266-55ce-4706-8344-9557effc7cc5",
+            "get-todo-lists"
+          ]
+        },
+        "description": "Generated from cURL: curl -X 'GET' \\\n  'http://localhost:9090/wunderlist-api/list/1df5c266-55ce-4706-8344-9557effc7cc5/get-todo-lists' \\\n  -H 'accept: application/json'"
+      },
+      "response": []
+    },
+    {
+      "name": "assign-todo-list",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "accept",
+            "value": "*/*"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJmdXJrbm96ZG1yQGhvdG1haWwuY29tIiwiaWF0IjoxNzQ3ODE3OTI0LCJleHAiOjE3NDc4MTk3MjR9.6c9lm03TajzNOjZ2HQpQSEEOB649tC7-JhpcS6fz_BvM-5RL0R7pJHv7o2pZrSXP3-tlxyKyn8FB3yrPN7pvlA",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"userEmail\": \"furknozdmr1@hotmail.com\",\n  \"todoListId\": \"90c23571-3ab0-466f-98d8-301893e605a8\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:9090/wunderlist-api/list/assign-todo-list",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "9090",
+          "path": [
+            "wunderlist-api",
+            "list",
+            "assign-todo-list"
+          ]
+        },
+        "description": "Generated from cURL: curl -X 'POST' \\\n  'http://localhost:9090/wunderlist-api/list/assign-todo-list' \\\n  -H 'accept: */*' \\\n  -H 'Content-Type: application/json' \\\n  -d '{\n  \"userEmail\": \"furknozdmr1@hotmail.com\",\n  \"todoListId\": \"90c23571-3ab0-466f-98d8-301893e605a8\"\n}'"
+      },
+      "response": []
+    },
+    {
+      "name": "delete-todo-list",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "accept",
+            "value": "*/*"
+          },
+          {
+            "key": "Authorization",
+            "value": "yJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJmdXJrbm96ZG1yQGhvdG1haWwuY29tIiwiaWF0IjoxNzQ3ODE3OTI0LCJleHAiOjE3NDc4MTk3MjR9.6c9lm03TajzNOjZ2HQpQSEEOB649tC7-JhpcS6fz_BvM-5RL0R7pJHv7o2pZrSXP3-tlxyKyn8FB3yrPN7pvlA",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:9090/wunderlist-api/list/delete-todo-list/90c23571-3ab0-466f-98d8-301893e605a8",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "9090",
+          "path": [
+            "wunderlist-api",
+            "list",
+            "delete-todo-list",
+            "90c23571-3ab0-466f-98d8-301893e605a8"
+          ]
+        },
+        "description": "Generated from cURL: curl -X 'POST' \\\n  'http://localhost:9090/wunderlist-api/list/delete-todo-list/90c23571-3ab0-466f-98d8-301893e605a8' \\\n  -H 'accept: */*' \\\n  -d ''"
+      },
+      "response": []
+    },
+    {
+      "name": "delete task",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "accept",
+            "value": "*/*"
+          },
+          {
+            "key": "Authorization",
+            "value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJmdXJrbm96ZG1yQGhvdG1haWwuY29tIiwiaWF0IjoxNzQ3ODE3OTI0LCJleHAiOjE3NDc4MTk3MjR9.6c9lm03TajzNOjZ2HQpQSEEOB649tC7-JhpcS6fz_BvM-5RL0R7pJHv7o2pZrSXP3-tlxyKyn8FB3yrPN7pvlA",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:9090/wunderlist-api/task/delete-task/600a649c-38ac-454b-b9ca-c215c0d63147",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "9090",
+          "path": [
+            "wunderlist-api",
+            "task",
+            "delete-task",
+            "600a649c-38ac-454b-b9ca-c215c0d63147"
+          ]
+        },
+        "description": "Generated from cURL: curl -X 'POST' \\\n  'http://localhost:9090/wunderlist-api/task/delete-task/600a649c-38ac-454b-b9ca-c215c0d63147' \\\n  -H 'accept: */*' \\\n  -d ''"
+      },
+      "response": []
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "id",
+      "value": "1"
+    },
+    {
+      "key": "base_url",
+      "value": "https://postman-rest-api-learner.glitch.me/"
+    }
+  ]
+}

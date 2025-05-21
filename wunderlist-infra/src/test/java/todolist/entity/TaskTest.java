@@ -16,7 +16,6 @@ class TaskTest {
 
     @Test
     void shouldCreateTaskWithBuilder() {
-        // Given
         String id = "12";
         String listId = "123";
         String title = "deneme";
@@ -30,7 +29,6 @@ class TaskTest {
         SubTask subTask = new SubTask("s1", "Deneme", "Açıklama", TaskStatus.IN_PROGRESS, LocalDate.of(2025, 6, 28), LocalDate.of(2025, 6, 26));
         List<SubTask> subTasks = List.of(subTask);
 
-        // When
         Task task = Task.builder()
                         .id(id)
                         .listId(listId)
@@ -45,7 +43,6 @@ class TaskTest {
                         .subTaskList(subTasks)
                         .build();
 
-        // Then
         assertThat(task.getId()).isEqualTo(id);
         assertThat(task.getListId()).isEqualTo(listId);
         assertThat(task.getTitle()).isEqualTo(title);
@@ -61,7 +58,6 @@ class TaskTest {
 
     @Test
     void shouldSetAndGetFieldsManually() {
-        // Given
         Task task = new Task();
         String id = "211";
         String listId = "323";
@@ -76,7 +72,6 @@ class TaskTest {
         SubTask subTask = new SubTask("2", "Deneme", "Açıklama", TaskStatus.COMPLETED, deadline, reminder);
         List<SubTask> subTasks = List.of(subTask);
 
-        // When
         task.setId(id);
         task.setListId(listId);
         task.setTitle(title);
@@ -89,7 +84,6 @@ class TaskTest {
         task.setReminderDate(reminder);
         task.setSubTaskList(subTasks);
 
-        // Then
         assertThat(task.getId()).isEqualTo(id);
         assertThat(task.getListId()).isEqualTo(listId);
         assertThat(task.getTitle()).isEqualTo(title);

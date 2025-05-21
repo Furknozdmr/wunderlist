@@ -11,7 +11,6 @@ class CreateTaskRequestTest {
 
     @Test
     void shouldCreateCreateTaskRequestUsingAllArgsConstructor() {
-        // Given
         String listId = "1";
         String userId = "2";
         String title = "deneme";
@@ -19,12 +18,10 @@ class CreateTaskRequestTest {
         LocalDate deadline = LocalDate.of(2025, 6, 10);
         LocalDate reminderDate = LocalDate.of(2025, 6, 5);
 
-        // When
         CreateTaskRequest request = new CreateTaskRequest(
                 listId, userId, title, description, deadline, reminderDate
         );
 
-        // Then
         assertThat(request.getListId()).isEqualTo(listId);
         assertThat(request.getUserId()).isEqualTo(userId);
         assertThat(request.getTitle()).isEqualTo(title);
@@ -35,7 +32,6 @@ class CreateTaskRequestTest {
 
     @Test
     void shouldCreateCreateTaskRequestUsingSetters() {
-        // Given
         CreateTaskRequest request = new CreateTaskRequest();
 
         String listId = "3";
@@ -45,7 +41,6 @@ class CreateTaskRequestTest {
         LocalDate deadline = LocalDate.of(2025, 7, 1);
         LocalDate reminderDate = LocalDate.of(2025, 6, 25);
 
-        // When
         request.setListId(listId);
         request.setUserId(userId);
         request.setTitle(title);
@@ -53,7 +48,6 @@ class CreateTaskRequestTest {
         request.setDeadline(deadline);
         request.setReminderDate(reminderDate);
 
-        // Then
         assertThat(request.getListId()).isEqualTo(listId);
         assertThat(request.getUserId()).isEqualTo(userId);
         assertThat(request.getTitle()).isEqualTo(title);
@@ -64,10 +58,8 @@ class CreateTaskRequestTest {
 
     @Test
     void shouldReturnNullFieldsWithNoArgsConstructor() {
-        // When
         CreateTaskRequest request = new CreateTaskRequest();
 
-        // Then
         assertThat(request.getListId()).isNull();
         assertThat(request.getUserId()).isNull();
         assertThat(request.getTitle()).isNull();

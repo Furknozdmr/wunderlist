@@ -23,19 +23,9 @@ services:
     networks:
       - todolist-network
 
-  redis:
-    image: redis:7.2.5
-    container_name: redis
-    ports:
-      - "6379:6379"
-    volumes:
-      - redis_data:/data
-    networks:
-      - todolist-network
 
 networks:
   todolist-network:
 
 volumes:
   couchbase_data:
-  redis_data:

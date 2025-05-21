@@ -12,7 +12,6 @@ class TodoListTest {
 
     @Test
     void shouldCreateTodoListUsingBuilder() {
-        // Given
         String id = "1";
         String title = "deneme";
         String description = "açıklama";
@@ -20,7 +19,6 @@ class TodoListTest {
         String createdBy = "admin";
         LocalDateTime createdAt = LocalDateTime.of(2025, 5, 20, 10, 30);
 
-        // When
         TodoList todoList = TodoList.builder()
                                     .id(id)
                                     .title(title)
@@ -30,7 +28,6 @@ class TodoListTest {
                                     .createdAt(createdAt)
                                     .build();
 
-        // Then
         assertThat(todoList.getId()).isEqualTo(id);
         assertThat(todoList.getTitle()).isEqualTo(title);
         assertThat(todoList.getDescription()).isEqualTo(description);
@@ -41,7 +38,6 @@ class TodoListTest {
 
     @Test
     void shouldSetAndGetFieldsManually() {
-        // Given
         TodoList todoList = new TodoList();
 
         String id = "19";
@@ -51,7 +47,6 @@ class TodoListTest {
         String createdBy = "Ali";
         LocalDateTime createdAt = LocalDateTime.of(2025, 5, 21, 14, 0);
 
-        // When
         todoList.setId(id);
         todoList.setTitle(title);
         todoList.setDescription(description);
@@ -59,7 +54,6 @@ class TodoListTest {
         todoList.setCreatedBy(createdBy);
         todoList.setCreatedAt(createdAt);
 
-        // Then
         assertThat(todoList.getId()).isEqualTo(id);
         assertThat(todoList.getTitle()).isEqualTo(title);
         assertThat(todoList.getDescription()).isEqualTo(description);
@@ -70,10 +64,8 @@ class TodoListTest {
 
     @Test
     void shouldCreateEmptyTodoListWithNoArgsConstructor() {
-        // When
         TodoList todoList = new TodoList();
 
-        // Then
         assertThat(todoList).isNotNull();
     }
 }

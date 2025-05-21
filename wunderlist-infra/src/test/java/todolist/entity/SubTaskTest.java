@@ -12,7 +12,6 @@ class SubTaskTest {
 
     @Test
     void shouldCreateSubTaskWithAllArgsConstructor() {
-        // Given
         String id = "1";
         String title = "Subtask Test";
         String description = "Deneme";
@@ -20,10 +19,8 @@ class SubTaskTest {
         LocalDate deadline = LocalDate.of(2025, 6, 1);
         LocalDate reminder = LocalDate.of(2025, 5, 25);
 
-        // When
         SubTask subTask = new SubTask(id, title, description, status, deadline, reminder);
 
-        // Then
         assertThat(subTask.getSubTaskId()).isEqualTo(id);
         assertThat(subTask.getSubTaskTitle()).isEqualTo(title);
         assertThat(subTask.getSubTaskDescription()).isEqualTo(description);
@@ -34,7 +31,6 @@ class SubTaskTest {
 
     @Test
     void shouldSetAndGetFieldsCorrectly() {
-        // Given
         SubTask subTask = new SubTask();
 
         String id = "456";
@@ -44,7 +40,6 @@ class SubTaskTest {
         LocalDate deadline = LocalDate.of(2025, 7, 15);
         LocalDate reminder = LocalDate.of(2025, 7, 10);
 
-        // When
         subTask.setSubTaskId(id);
         subTask.setSubTaskTitle(title);
         subTask.setSubTaskDescription(description);
@@ -52,7 +47,6 @@ class SubTaskTest {
         subTask.setSubTaskDeadline(deadline);
         subTask.setSubTaskReminderDate(reminder);
 
-        // Then
         assertThat(subTask.getSubTaskId()).isEqualTo(id);
         assertThat(subTask.getSubTaskTitle()).isEqualTo(title);
         assertThat(subTask.getSubTaskDescription()).isEqualTo(description);

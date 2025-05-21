@@ -12,7 +12,6 @@ class CreateSubTaskRequestTest {
 
     @Test
     void shouldCreateCreateSubTaskRequestUsingAllArgsConstructor() {
-        // Given
         String taskId = "1";
         String userId = "1";
         String title = "deneme";
@@ -25,7 +24,6 @@ class CreateSubTaskRequestTest {
                 taskId, userId, title, description, deadline, reminderDate
         );
 
-        // Then
         assertThat(request.getTaskId()).isEqualTo(taskId);
         assertThat(request.getUserId()).isEqualTo(userId);
         assertThat(request.getTitle()).isEqualTo(title);
@@ -36,7 +34,6 @@ class CreateSubTaskRequestTest {
 
     @Test
     void shouldCreateCreateSubTaskRequestUsingSetters() {
-        // Given
         CreateSubTaskRequest request = new CreateSubTaskRequest();
 
         String taskId = "2";
@@ -46,7 +43,6 @@ class CreateSubTaskRequestTest {
         LocalDate deadline = LocalDate.of(2025, 6, 1);
         LocalDate reminderDate = LocalDate.of(2025, 5, 29);
 
-        // When
         request.setTaskId(taskId);
         request.setUserId(userId);
         request.setTitle(title);
@@ -54,7 +50,6 @@ class CreateSubTaskRequestTest {
         request.setDeadline(deadline);
         request.setReminderDate(reminderDate);
 
-        // Then
         assertThat(request.getTaskId()).isEqualTo(taskId);
         assertThat(request.getUserId()).isEqualTo(userId);
         assertThat(request.getTitle()).isEqualTo(title);
@@ -65,10 +60,8 @@ class CreateSubTaskRequestTest {
 
     @Test
     void shouldReturnNullFieldsWithNoArgsConstructor() {
-        // When
         CreateSubTaskRequest request = new CreateSubTaskRequest();
 
-        // Then
         assertThat(request.getTaskId()).isNull();
         assertThat(request.getUserId()).isNull();
         assertThat(request.getTitle()).isNull();
