@@ -26,8 +26,13 @@ API Testleri: Uygulama başlatıldıktan sonra, projeyle birlikte verilen Postma
 endpoints) istekler gönderebilir ve sonuçları gözlemleyebilirsiniz.
 
 Uygulamanın Geliştirilmesi Gereken Kısımlar
+
 -Token'lar redis cache'te saklanılabilir.
+
 -Uygulama üzerinde todo-list kısımlarından birden fazla olduğunda görevler farklı todo-listlere aktarım yapılabilmelidir.
+
 -Uygulamaya ait bir ön yüz yazılabilir
+
 -Couchbase oluşturulurken otomatik bir şekilde "bucket" oluşturulmasına yarayan bir sh yaratılabilir.
+
 -Açılan görevlere güncelleme yapılabilmesi.		
